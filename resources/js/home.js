@@ -2,7 +2,8 @@ import Swiper from 'swiper/bundle';
 import 'swiper/css/bundle';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import lucide from 'lucide';
+import * as lucide from 'lucide';
+
 
 // ✅ Lucide Icons Init
 document.addEventListener("DOMContentLoaded", () => {
