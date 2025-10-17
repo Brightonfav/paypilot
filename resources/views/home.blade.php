@@ -92,30 +92,111 @@
     once: true,
   });
 </script>
+<!-- COUNTER SECTION -->
+<section id="stats" class="py-20 bg-gradient-to-br from-indigo-50 via-white to-indigo-100">
+  <div class="max-w-7xl mx-auto px-6">
+    <h2 class="text-center text-4xl font-extrabold text-gray-900 mb-12" data-aos="fade-up">
+      Our Achievements
+    </h2>
 
-
-
-
-
-
-
-    <!-- ✅ Stats Section -->
-    <section id="stats" class="py-16 bg-white">
-        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-            <div class="p-6" data-aos="zoom-in">
-                <h2 class="text-4xl font-bold text-indigo-600 counter" data-target="50000">0</h2>
-                <p class="mt-2 text-gray-600">Active Users</p>
-            </div>
-            <div class="p-6" data-aos="zoom-in" data-aos-delay="200">
-                <h2 class="text-4xl font-bold text-indigo-600 counter" data-target="1200000">0</h2>
-                <p class="mt-2 text-gray-600">Transactions Processed</p>
-            </div>
-            <div class="p-6" data-aos="zoom-in" data-aos-delay="400">
-                <h2 class="text-4xl font-bold text-indigo-600 counter" data-target="25">0</h2>
-                <p class="mt-2 text-gray-600">Countries Served</p>
-            </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-10 text-center">
+      
+      <!-- 💰 Revenue Generated -->
+      <div class="p-8 bg-white rounded-3xl shadow-md hover:shadow-xl transition-all duration-300"
+           data-aos="zoom-in">
+        <div class="flex justify-center items-center mb-4">
+          <i data-lucide="wallet" class="w-12 h-12 text-indigo-600"></i>
         </div>
-    </section>
+        <h2 class="text-5xl font-extrabold text-indigo-600 counter"
+            data-target="5000"
+            data-prefix="$"
+            data-suffix="">0</h2>
+        <p class="mt-3 text-gray-700 font-medium text-lg">Revenue Generated</p>
+      </div>
+
+      <!-- 🔁 Transactions Processed -->
+      <div class="p-8 bg-white rounded-3xl shadow-md hover:shadow-xl transition-all duration-300"
+           data-aos="zoom-in" data-aos-delay="200">
+        <div class="flex justify-center items-center mb-4">
+          <i data-lucide="repeat" class="w-12 h-12 text-indigo-600"></i>
+        </div>
+        <h2 class="text-5xl font-extrabold text-indigo-600 counter"
+            data-target="1000"
+            data-suffix="+">0</h2>
+        <p class="mt-3 text-gray-700 font-medium text-lg">Transactions Processed</p>
+      </div>
+
+      <!-- 🌍 Countries Served -->
+      <div class="p-8 bg-white rounded-3xl shadow-md hover:shadow-xl transition-all duration-300"
+           data-aos="zoom-in" data-aos-delay="400">
+        <div class="flex justify-center items-center mb-4">
+          <i data-lucide="globe" class="w-12 h-12 text-indigo-600"></i>
+        </div>
+        <h2 class="text-5xl font-extrabold text-indigo-600 counter"
+            data-target="25"
+            data-suffix="">0</h2>
+        <p class="mt-3 text-gray-700 font-medium text-lg">Countries Served</p>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ✅ Counter Animation Script -->
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const counters = document.querySelectorAll(".counter");
+    const duration = 2000; // total animation time (ms)
+
+    counters.forEach(counter => {
+      const target = +counter.getAttribute("data-target");
+      const prefix = counter.getAttribute("data-prefix") || "";
+      const suffix = counter.getAttribute("data-suffix") || "";
+
+      const formatNumber = (num) => {
+        if (num >= 1000 && num < 1000000) return (num / 1000).toFixed(0) + "k";
+        if (num >= 1000000) return (num / 1000000).toFixed(1) + "M";
+        return num.toLocaleString();
+      };
+
+      const animateCount = () => {
+        const start = performance.now();
+
+        const step = (timestamp) => {
+          const elapsed = timestamp - start;
+          const progress = Math.min(elapsed / duration, 1);
+
+          // Ease-out effect: starts fast, slows near the end
+          const easedProgress = 1 - Math.pow(1 - progress, 3);
+          const current = target * easedProgress;
+
+          counter.innerText = `${prefix}${formatNumber(Math.floor(current))}${suffix}`;
+
+          if (progress < 1) {
+            requestAnimationFrame(step);
+          } else {
+            counter.innerText = `${prefix}${formatNumber(target)}${suffix}`;
+          }
+        };
+
+        requestAnimationFrame(step);
+      };
+
+      // Trigger only when visible
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            animateCount();
+            observer.unobserve(counter);
+          }
+        });
+      }, { threshold: 0.5 });
+
+      observer.observe(counter);
+    });
+
+    lucide.createIcons();
+  });
+</script>
+
 
     <!-- ✅ Features Section -->
     <section class="py-20 bg-gray-50">
@@ -362,34 +443,39 @@
     </div>
   </div>
 </section>
+<!-- ✅ Swiper JS -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
-<!-- SwiperJS Init -->
+<!-- ✅ Swiper Initialization -->
 <script>
-  const swiper = new Swiper('.swiper', {
-    loop: true,
-    grabCursor: true,
-    spaceBetween: 30,
-    slidesPerView: 1,
-    autoplay: {
-      delay: 4000,
-      disableOnInteraction: false,
-    },
-    pagination: {
-      el: '.swiper-pagination',
-      clickable: true,
-    },
-    navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev',
-    },
-    breakpoints: {
-      768: { slidesPerView: 2 }, 
-      1024: { slidesPerView: 3 }
-    }
-  });
+  document.addEventListener("DOMContentLoaded", () => {
+    const swiper = new Swiper(".swiper", {
+      loop: true,
+      grabCursor: true,
+      spaceBetween: 30,
+      slidesPerView: 1,
+      autoplay: {
+        delay: 4000,
+        disableOnInteraction: false,
+      },
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+      },
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      },
+      breakpoints: {
+        768: { slidesPerView: 2 },
+        1024: { slidesPerView: 3 },
+      },
+    });
 
-  lucide.createIcons(); // render icons
+    lucide.createIcons();
+  });
 </script>
+
 
 <!-- ✅ FAQ Section -->
 <section class="relative py-24 px-6 bg-gradient-to-b from-indigo-50 via-gray-50 to-white" data-aos="fade-up">

@@ -4,78 +4,178 @@
 
 @section('content')
 
-<!-- Hero Section -->
-<section class="bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-24 px-6 text-center" data-aos="fade-down">
-    <div class="max-w-4xl mx-auto">
-        <h1 class="text-4xl md:text-6xl font-bold mb-6">Simple, Transparent Pricing</h1>
-        <p class="text-lg md:text-xl mb-8">Choose the plan that works best for your business. No hidden fees.</p>
-        <div class="inline-flex items-center bg-white text-indigo-600 rounded-full px-6 py-2 font-semibold shadow hover:shadow-lg transition">
-            <span class="mr-2">Save 20%</span> with yearly billing
+<!-- 🌟 Pricing Hero Section -->
+<section class="relative bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 text-white py-32 md:py-40 overflow-hidden">
+  
+  <!-- 🌈 Animated Gradient Glows -->
+  <div class="absolute top-0 left-0 w-96 h-96 bg-white/10 rounded-full blur-3xl animate-float-slow -translate-x-1/3 -translate-y-1/3"></div>
+  <div class="absolute bottom-0 right-0 w-[28rem] h-[28rem] bg-indigo-400/10 rounded-full blur-3xl animate-float"></div>
+  <div class="absolute top-1/2 right-1/4 w-72 h-72 bg-pink-400/10 rounded-full blur-3xl animate-pulse-slow"></div>
+
+  <!-- 🌀 Pattern Overlay -->
+  <div class="absolute inset-0 bg-[url('https://www.toptal.com/designers/subtlepatterns/patterns/dot-grid.png')] opacity-10 mix-blend-overlay"></div>
+
+  <!-- ✨ Content -->
+  <div class="relative max-w-6xl mx-auto text-center px-6" data-aos="fade-down">
+    
+    <!-- 🔹 Subtitle -->
+    <span class="inline-block text-indigo-200 uppercase tracking-widest text-sm font-semibold mb-4 animate-fade-in">
+      Pricing Plans
+    </span>
+
+    <!-- 🔹 Main Heading -->
+    <h1 class="text-5xl md:text-7xl font-extrabold leading-tight mb-6 animate-fade-in">
+      Simple, Transparent <span class="text-yellow-300">Pricing</span>
+    </h1>
+
+    <!-- 🔹 Description -->
+    <p class="text-lg md:text-2xl text-indigo-100 mb-10 max-w-3xl mx-auto animate-fade-in-delay">
+      Choose the plan that fits your business best — no hidden fees, just value that scales with you.
+    </p>
+
+    <!-- 🔹 Save 20% Badge -->
+    <div class="inline-flex items-center bg-white text-indigo-700 rounded-full px-8 py-3 font-semibold shadow-lg hover:shadow-xl transition animate-bounce-slow">
+      <i data-lucide="sparkles" class="w-5 h-5 mr-2 text-indigo-500"></i>
+      <span class="mr-2">Save 20%</span> with yearly billing
+    </div>
+
+    <!-- 🔹 CTA Button -->
+    <div class="mt-10">
+      <a href="#plans"
+         class="bg-white text-indigo-600 px-10 py-4 rounded-2xl font-semibold text-lg shadow-lg hover:bg-gray-100 transition duration-300">
+        View Plans
+      </a>
+    </div>
+  </div>
+
+  <!-- 🌊 Decorative Wave Divider -->
+  <svg class="absolute bottom-0 left-0 w-full h-24" xmlns="http://www.w3.org/2000/svg"
+       viewBox="0 0 1440 320" preserveAspectRatio="none">
+    <path fill="#fff" fill-opacity="1"
+      d="M0,224L80,218.7C160,213,320,203,480,181.3C640,160,800,128,960,117.3C1120,107,1280,117,1360,122.7L1440,128V320H0Z">
+    </path>
+  </svg>
+</section>
+
+<!-- 🎨 Animations -->
+<style>
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+  }
+
+  @keyframes pulseSlow {
+    0%, 100% { opacity: 0.6; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.05); }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(25px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .animate-float { animation: float 6s ease-in-out infinite; }
+  .animate-float-slow { animation: float 10s ease-in-out infinite; }
+  .animate-pulse-slow { animation: pulseSlow 8s ease-in-out infinite; }
+  .animate-fade-in { animation: fadeIn 1s ease forwards; }
+  .animate-fade-in-delay { animation: fadeIn 1.3s ease forwards; }
+  .animate-bounce-slow { animation: bounce 3s ease-in-out infinite; }
+</style>
+
+
+
+
+ <!-- ✅ Pricing Section -->
+<section class="py-20 bg-white" x-data="{ yearly: false }">
+    <div class="max-w-7xl mx-auto px-6 text-center">
+        <h2 class="text-3xl md:text-4xl font-bold mb-6" data-aos="fade-up">Simple Pricing</h2>
+        <p class="mb-12 text-gray-600" data-aos="fade-up" data-aos-delay="200">Choose the plan that fits your business.</p>
+
+        <!-- Toggle -->
+        <div class="flex justify-center items-center mb-10" data-aos="fade-up" data-aos-delay="400">
+            <span :class="!yearly ? 'text-indigo-600 font-semibold' : 'text-gray-500'">Monthly</span>
+            <label class="mx-3 relative inline-flex items-center cursor-pointer">
+                <input type="checkbox" x-model="yearly" class="sr-only">
+                <span class="w-12 h-6 bg-gray-300 rounded-full shadow-inner"></span>
+                <span class="absolute left-1 top-1 w-4 h-4 bg-white rounded-full shadow transition-transform"
+                      :class="yearly ? 'translate-x-6' : ''"></span>
+            </label>
+            <span :class="yearly ? 'text-indigo-600 font-semibold' : 'text-gray-500'">Yearly</span>
+        </div>
+
+        <!-- Pricing Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            
+            <!-- Starter -->
+            <div class="bg-gray-50 p-8 rounded-xl shadow hover:shadow-lg transition flex flex-col"
+                 data-aos="fade-up">
+                <i data-lucide="leaf" class="w-8 h-8 text-indigo-600 mb-4 mx-auto"></i>
+                <h3 class="text-xl font-semibold mb-4">Starter</h3>
+                <p class="text-4xl font-bold text-indigo-600 mb-6">
+                    <span x-show="!yearly">$10</span>
+                    <span x-show="yearly">$100</span>
+                    <span class="text-lg font-medium text-gray-500">/month</span>
+                </p>
+                <ul class="text-gray-600 space-y-3 mb-6 flex-1">
+                    <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-5 h-5 text-green-500"></i> Basic transactions</li>
+                    <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-5 h-5 text-green-500"></i> Secure payments</li>
+                    <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-5 h-5 text-green-500"></i> Email support</li>
+                </ul>
+                <a href="/register"
+                   class="block w-full bg-indigo-600 text-white py-3 rounded-lg hover:bg-indigo-700 transition">
+                   Get Started
+                </a>
+            </div>
+
+            <!-- Pro (Featured) -->
+            <div class="bg-indigo-600 text-white p-10 rounded-2xl shadow-2xl relative scale-105 md:scale-110 flex flex-col"
+                 data-aos="fade-up" data-aos-delay="200">
+                <span class="absolute top-4 right-4 bg-white text-indigo-600 text-xs font-bold px-2 py-1 rounded">Popular</span>
+                <i data-lucide="rocket" class="w-8 h-8 text-white mb-4 mx-auto"></i>
+                <h3 class="text-2xl font-semibold mb-4">Pro</h3>
+                <p class="text-5xl font-bold mb-6">
+                    <span x-show="!yearly">$30</span>
+                    <span x-show="yearly">$300</span>
+                    <span class="text-lg font-medium">/month</span>
+                </p>
+                <ul class="space-y-3 mb-6 flex-1">
+                    <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-5 h-5 text-white"></i> Unlimited transactions</li>
+                    <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-5 h-5 text-white"></i> Analytics dashboard</li>
+                    <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-5 h-5 text-white"></i> Priority support</li>
+                </ul>
+                <a href="/register"
+                   class="block w-full bg-white text-indigo-600 py-3 rounded-lg hover:bg-indigo-100 transition">
+                   Get Started
+                </a>
+            </div>
+
+            <!-- Enterprise -->
+            <div class="bg-gray-50 p-8 rounded-xl shadow hover:shadow-lg transition flex flex-col"
+                 data-aos="fade-up" data-aos-delay="400">
+                <i data-lucide="briefcase" class="w-8 h-8 text-indigo-600 mb-4 mx-auto"></i>
+                <h3 class="text-xl font-semibold mb-4">Enterprise</h3>
+                <p class="text-4xl font-bold text-indigo-600 mb-6">
+                    <span x-show="!yearly">$99</span>
+                    <span x-show="yearly">$999</span>
+                    <span class="text-lg font-medium text-gray-500">/month</span>
+                </p>
+                <ul class="text-gray-600 space-y-3 mb-6 flex-1">
+                    <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-5 h-5 text-green-500"></i> Dedicated account manager</li>
+                    <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-5 h-5 text-green-500"></i> Advanced fraud protection</li>
+                    <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-5 h-5 text-green-500"></i> 24/7 VIP support</li>
+                </ul>
+                <a href="/register"
+                   class="block w-full bg-indigo-600 text-white py-3 rounded-lg hover:bg-indigo-700 transition">
+                   Get Started
+                </a>
+            </div>
         </div>
     </div>
 </section>
 
- gap-2"><i data-lucide="headphones" class="text-green-500 w-5 h-5"></i> Priority support</li>
-        <li class="flex items-center gap-2"><i data-lucide="palette" class="text-green-500 w-5 h-5"></i> Custom branding</li>
-      </ul>
-      <a href="/register" class="bl<!-- Pricing Section -->
-<section class="py-20 px-6 bg-gray-50">
-  <div class="max-w-6xl mx-auto text-center mb-12">
-    <h2 class="text-4xl font-bold text-gray-900">Simple, Transparent Pricing</h2>
-    <p class="text-gray-600 mt-4">Choose a plan that fits your needs. No hidden fees.</p>
-  </div>
 
-  <div class="max-w-6xl mx-auto grid gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-
-    <!-- Starter Plan -->
-    <div class="bg-white rounded-2xl shadow-lg p-8 text-center hover:shadow-xl transition" data-aos="zoom-in">
-      <h3 class="text-2xl font-semibold mb-4">Starter</h3>
-      <p class="text-gray-600 mb-6">Perfect for freelancers just starting out.</p>
-      <div class="text-4xl font-bold mb-6">$0 <span class="text-lg text-gray-500">/mo</span></div>
-      <ul class="space-y-3 mb-8 text-gray-600 text-left">
-        <li class="flex items-center gap-2"><i data-lucide="check-circle" class="text-green-500 w-5 h-5"></i> Create unlimited invoices</li>
-        <li class="flex items-center gap-2"><i data-lucide="check-circle" class="text-green-500 w-5 h-5"></i> Track payments</li>
-        <li class="flex items-center gap-2"><i data-lucide="check-circle" class="text-green-500 w-5 h-5"></i> 1 client project</li>
-      </ul>
-      <a href="/register" class="block bg-indigo-600 text-white py-3 rounded-lg shadow hover:bg-indigo-700 transition">Get Started Free</a>
-    </div>
-
-    <!-- Pro Plan -->
-    <div class="bg-indigo-600 text-white rounded-2xl shadow-lg p-8 text-center transform scale-105 hover:scale-110 transition" data-aos="zoom-in" data-aos-delay="150">
-      <h3 class="text-2xl font-semibold mb-4">Pro <span class="bg-white text-indigo-600 text-sm px-2 py-1 rounded-full ml-2">Popular</span></h3>
-      <p class="mb-6">For growing freelancers & small businesses.</p>
-      <div class="text-4xl font-bold mb-6">$15 <span class="text-lg text-indigo-200">/mo</span></div>
-      <ul class="space-y-3 mb-8 text-left">
-        <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-5 h-5"></i> Unlimited invoices</li>
-        <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-5 h-5"></i> Unlimited clients</li>
-        <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-5 h-5"></i> Expense tracking</li>
-        <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-5 h-5"></i> Email support</li>
-      </ul>
-      <a href="/register" class="block bg-white text-indigo-600 py-3 rounded-lg font-semibold shadow hover:bg-gray-100 transition">Choose Pro</a>
-    </div>
-
-    <!-- Business Plan -->
-    <div class="bg-white rounded-2xl shadow-lg p-8 text-center hover:shadow-xl transition" data-aos="zoom-in" data-aos-delay="300">
-      <h3 class="text-2xl font-semibold mb-4">Business</h3>
-      <p class="text-gray-600 mb-6">Advanced tools for teams and agencies.</p>
-      <div class="text-4xl font-bold mb-6">$29 <span class="text-lg text-gray-500">/mo</span></div>
-      <ul class="space-y-3 mb-8 text-gray-600 text-left">
-        <li class="flex items-center gap-2"><i data-lucide="check-circle" class="text-green-500 w-5 h-5"></i> All Pro features</li>
-        <li class="flex items-center gap-2"><i data-lucide="users" class="text-green-500 w-5 h-5"></i> Team collaboration</li>
-        <li class="flex items-centerock bg-indigo-600 text-white py-3 rounded-lg shadow hover:bg-indigo-700 transition">Get Business</a>
-    </div>
-
-  </div>
-</section>
-
-<!-- Lucide JS -->
-<script src="https://unpkg.com/lucide@latest"></script>
-<script>
-  lucide.createIcons();
-</script>
-
-<!-- Comparison Table -->
-<section class="py-20 px-6 bg-white" data-aos="fade-up">
+<!-- 📊 Comparison Table -->
+<section class="bg-gray-50 py-20 px-6" data-aos="fade-up" data-aos-delay="250">
   <div class="max-w-6xl mx-auto">
     <h2 class="text-3xl font-bold text-center mb-12">Compare Plans</h2>
 
@@ -90,30 +190,10 @@
           </tr>
         </thead>
         <tbody class="divide-y divide-gray-200">
-          <tr class="hover:bg-indigo-50 transition duration-300">
-            <td class="p-4 font-medium text-gray-800">Invoices</td>
-            <td class="p-4 text-center"><i data-lucide="check" class="text-green-600 w-5 h-5 mx-auto"></i></td>
-            <td class="p-4 text-center"><i data-lucide="check" class="text-green-600 w-5 h-5 mx-auto"></i></td>
-            <td class="p-4 text-center"><i data-lucide="check" class="text-green-600 w-5 h-5 mx-auto"></i></td>
-          </tr>
-          <tr class="hover:bg-indigo-50 transition duration-300">
-            <td class="p-4 font-medium text-gray-800">Clients</td>
-            <td class="p-4 text-center">1</td>
-            <td class="p-4 text-center"><i data-lucide="check" class="text-green-600 w-5 h-5 mx-auto"></i></td>
-            <td class="p-4 text-center"><i data-lucide="check" class="text-green-600 w-5 h-5 mx-auto"></i></td>
-          </tr>
-          <tr class="hover:bg-indigo-50 transition duration-300">
-            <td class="p-4 font-medium text-gray-800">Team members</td>
-            <td class="p-4 text-center"><i data-lucide="x" class="text-red-500 w-5 h-5 mx-auto"></i></td>
-            <td class="p-4 text-center"><i data-lucide="x" class="text-red-500 w-5 h-5 mx-auto"></i></td>
-            <td class="p-4 text-center"><i data-lucide="check" class="text-green-600 w-5 h-5 mx-auto"></i></td>
-          </tr>
-          <tr class="hover:bg-indigo-50 transition duration-300">
-            <td class="p-4 font-medium text-gray-800">Support</td>
-            <td class="p-4 text-center">Community</td>
-            <td class="p-4 text-center">Email</td>
-            <td class="p-4 text-center">Priority</td>
-          </tr>
+          <tr><td class="p-4 font-medium">Invoices</td><td class="p-4 text-center"><i data-lucide="check" class="text-green-600 mx-auto"></i></td><td class="p-4 text-center"><i data-lucide="check" class="text-green-600 mx-auto"></i></td><td class="p-4 text-center"><i data-lucide="check" class="text-green-600 mx-auto"></i></td></tr>
+          <tr><td class="p-4 font-medium">Clients</td><td class="p-4 text-center">1</td><td class="p-4 text-center"><i data-lucide="check" class="text-green-600 mx-auto"></i></td><td class="p-4 text-center"><i data-lucide="check" class="text-green-600 mx-auto"></i></td></tr>
+          <tr><td class="p-4 font-medium">Team members</td><td class="p-4 text-center"><i data-lucide="x" class="text-red-500 mx-auto"></i></td><td class="p-4 text-center"><i data-lucide="x" class="text-red-500 mx-auto"></i></td><td class="p-4 text-center"><i data-lucide="check" class="text-green-600 mx-auto"></i></td></tr>
+          <tr><td class="p-4 font-medium">Support</td><td class="p-4 text-center">Community</td><td class="p-4 text-center">Email</td><td class="p-4 text-center">Priority</td></tr>
         </tbody>
       </table>
     </div>
@@ -124,207 +204,33 @@
         Trusted by <span class="text-indigo-600 font-bold">1,000+ businesses</span> worldwide
       </p>
       <div class="flex justify-center items-center gap-8 flex-wrap">
-        <img src="/images/stripe.png" alt="Stripe" class="h-10 grayscale hover:grayscale-0 transition">
-        <img src="/images/paypal.png" alt="PayPal" class="h-10 grayscale hover:grayscale-0 transition">
-        <img src="/images/visa.png" alt="Visa" class="h-10 grayscale hover:grayscale-0 transition">
-        <img src="/images/Mastercard.png" alt="Mastercard" class="h-10 grayscale hover:grayscale-0 transition">
+        <img src="/images/stripe.png" class="h-10 grayscale hover:grayscale-0 transition" alt="Stripe">
+        <img src="/images/paypal.png" class="h-10 grayscale hover:grayscale-0 transition" alt="PayPal">
+        <img src="/images/visa.png" class="h-10 grayscale hover:grayscale-0 transition" alt="Visa">
+        <img src="/images/mastercard.png" class="h-10 grayscale hover:grayscale-0 transition" alt="Mastercard">
       </div>
     </div>
   </div>
 </section>
 
-<!-- Load Lucide -->
-<script src="https://unpkg.com/lucide@latest"></script>
-<script>
-  lucide.createIcons();
-</script>
-
-
-<!-- Testimonials -->
+<!-- 💬 Testimonials -->
 <section class="bg-gray-50 py-20 px-6" data-aos="fade-up">
-    <div class="max-w-6xl mx-auto text-center">
-        <h2 class="text-3xl font-bold mb-12">What Our Users Say</h2>
-        <div class="grid md:grid-cols-3 gap-8">
-            <div class="bg-white shadow p-6 rounded-2xl">
-                <p class="text-gray-600 mb-4">“PayPilot Africa makes invoicing so easy. I get paid faster!”</p>
-                <h4 class="font-semibold">– Sarah, Freelancer</h4>
-            </div>
-            <div class="bg-white shadow p-6 rounded-2xl">
-                <p class="text-gray-600 mb-4">“Managing my clients has never been smoother.”</p>
-                <h4 class="font-semibold">– David, Small Business</h4>
-            </div>
-            <div class="bg-white shadow p-6 rounded-2xl">
-                <p class="text-gray-600 mb-4">“The Pro plan is worth every penny.”</p>
-                <h4 class="font-semibold">– Amina, Entrepreneur</h4>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Wavy Divider (Top, Animated) -->
-<div class="relative overflow-hidden">
-  <svg class="absolute top-0 left-0 w-full h-20"
-       xmlns="http://www.w3.org/2000/svg"
-       viewBox="0 0 1440 320"
-       preserveAspectRatio="none">
-    <defs>
-      <linearGradient id="faqWaveGradientTop" x1="0%" y1="0%" x2="100%" y2="0%">
-        <stop offset="0%" stop-color="#6366F1"/> <!-- Indigo -->
-        <stop offset="100%" stop-color="#8B5CF6"/> <!-- Violet -->
-      </linearGradient>
-    </defs>
-    <path fill="url(#faqWaveGradientTop)">
-      <animate attributeName="d" dur="8s" repeatCount="indefinite"
-        values="
-          M0,160 C480,220 960,100 1440,160 L1440,320 L0,320 Z;
-          M0,140 C480,180 960,140 1440,120 L1440,320 L0,320 Z;
-          M0,160 C480,220 960,100 1440,160 L1440,320 L0,320 Z
-        " />
-    </path>
-  </svg>
-</div>
-
-<!-- FAQ Section -->
-<section class="py-20 px-6 bg-gradient-to-b from-indigo-50 via-gray-50 to-white relative" data-aos="fade-up">
-  <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
-    
-    <!-- Left Side: Illustration -->
-    <div class="flex justify-center" data-aos="fade-right">
-      <img src="/images/faq.png" 
-           alt="FAQ Illustration" 
-           class="w-80 md:w-[400px] animate-float">
-    </div>
-
-    <!-- Right Side: Accordion -->
-    <div data-aos="fade-left">
-      <h2 class="text-4xl font-bold mb-10 text-indigo-700">
-        Frequently Asked Questions
-      </h2>
-
-      <div class="space-y-4" x-data="{ open: null }">
-        
-        <!-- FAQ Item -->
-        <div class="border border-indigo-100 rounded-2xl bg-white shadow-md hover:shadow-lg transition">
-          <button 
-            @click="open === 1 ? open = null : open = 1" 
-            class="w-full flex justify-between items-center p-5 text-left font-semibold text-gray-800">
-            <span>Can I cancel anytime?</span>
-            <i :class="open === 1 ? 'lucide-minus text-indigo-600' : 'lucide-plus text-indigo-600'" 
-               class="w-6 h-6 transition-transform duration-300"></i>
-          </button>
-          <div x-show="open === 1" x-collapse class="px-5 pb-5 text-gray-600">
-            Yes! You can cancel your subscription at any time from your dashboard.
-          </div>
-        </div>
-
-        <!-- FAQ Item -->
-        <div class="border border-indigo-100 rounded-2xl bg-white shadow-md hover:shadow-lg transition">
-          <button 
-            @click="open === 2 ? open = null : open = 2" 
-            class="w-full flex justify-between items-center p-5 text-left font-semibold text-gray-800">
-            <span>Do you offer a free trial?</span>
-            <i :class="open === 2 ? 'lucide-minus text-indigo-600' : 'lucide-plus text-indigo-600'" 
-               class="w-6 h-6 transition-transform duration-300"></i>
-          </button>
-          <div x-show="open === 2" x-collapse class="px-5 pb-5 text-gray-600">
-            Yes, our Starter plan is free forever. You can upgrade anytime.
-          </div>
-        </div>
-
-        <!-- FAQ Item -->
-        <div class="border border-indigo-100 rounded-2xl bg-white shadow-md hover:shadow-lg transition">
-          <button 
-            @click="open === 3 ? open = null : open = 3" 
-            class="w-full flex justify-between items-center p-5 text-left font-semibold text-gray-800">
-            <span>What payment methods do you accept?</span>
-            <i :class="open === 3 ? 'lucide-minus text-indigo-600' : 'lucide-plus text-indigo-600'" 
-               class="w-6 h-6 transition-transform duration-300"></i>
-          </button>
-          <div x-show="open === 3" x-collapse class="px-5 pb-5 text-gray-600">
-            We accept credit cards, debit cards, and popular African payment gateways.
-          </div>
-        </div>
-
-        <!-- FAQ Item -->
-        <div class="border border-indigo-100 rounded-2xl bg-white shadow-md hover:shadow-lg transition">
-          <button 
-            @click="open === 4 ? open = null : open = 4" 
-            class="w-full flex justify-between items-center p-5 text-left font-semibold text-gray-800">
-            <span>Can I switch plans later?</span>
-            <i :class="open === 4 ? 'lucide-minus text-indigo-600' : 'lucide-plus text-indigo-600'" 
-               class="w-6 h-6 transition-transform duration-300"></i>
-          </button>
-          <div x-show="open === 4" x-collapse class="px-5 pb-5 text-gray-600">
-            Absolutely. You can upgrade or downgrade your plan at any time.
-          </div>
-        </div>
-
-        <!-- Extra Question -->
-        <div class="border border-indigo-100 rounded-2xl bg-white shadow-md hover:shadow-lg transition">
-          <button 
-            @click="open === 5 ? open = null : open = 5" 
-            class="w-full flex justify-between items-center p-5 text-left font-semibold text-gray-800">
-            <span>Is my data secure with you?</span>
-            <i :class="open === 5 ? 'lucide-minus text-indigo-600' : 'lucide-plus text-indigo-600'" 
-               class="w-6 h-6 transition-transform duration-300"></i>
-          </button>
-          <div x-show="open === 5" x-collapse class="px-5 pb-5 text-gray-600">
-            100%. We use bank-level encryption and follow best security practices to protect your information.
-          </div>
-        </div>
-
-        <!-- Extra Question -->
-        <div class="border border-indigo-100 rounded-2xl bg-white shadow-md hover:shadow-lg transition">
-          <button 
-            @click="open === 6 ? open = null : open = 6" 
-            class="w-full flex justify-between items-center p-5 text-left font-semibold text-gray-800">
-            <span>Do you provide customer support?</span>
-            <i :class="open === 6 ? 'lucide-minus text-indigo-600' : 'lucide-plus text-indigo-600'" 
-               class="w-6 h-6 transition-transform duration-300"></i>
-          </button>
-          <div x-show="open === 6" x-collapse class="px-5 pb-5 text-gray-600">
-            Yes, our support team is available 24/7 via email and chat to assist you.
-          </div>
-        </div>
-
-      </div>
+  <div class="max-w-6xl mx-auto text-center">
+    <h2 class="text-3xl font-bold mb-12">What Our Users Say</h2>
+    <div class="grid md:grid-cols-3 gap-8">
+      <div class="bg-white shadow p-6 rounded-2xl"><p class="text-gray-600 mb-4">“PayPilot Africa makes invoicing so easy. I get paid faster!”</p><h4 class="font-semibold">– Sarah, Freelancer</h4></div>
+      <div class="bg-white shadow p-6 rounded-2xl"><p class="text-gray-600 mb-4">“Managing my clients has never been smoother.”</p><h4 class="font-semibold">– David, Small Business</h4></div>
+      <div class="bg-white shadow p-6 rounded-2xl"><p class="text-gray-600 mb-4">“The Pro plan is worth every penny.”</p><h4 class="font-semibold">– Amina, Entrepreneur</h4></div>
     </div>
   </div>
 </section>
 
-<!-- Wavy Divider (Bottom, Animated) -->
-<div class="relative overflow-hidden">
-  <svg class="absolute bottom-0 left-0 w-full h-20 rotate-180"
-       xmlns="http://www.w3.org/2000/svg"
-       viewBox="0 0 1440 320"
-       preserveAspectRatio="none">
-    <defs>
-      <linearGradient id="faqWaveGradientBottom" x1="0%" y1="0%" x2="100%" y2="0%">
-        <stop offset="0%" stop-color="#6366F1"/> <!-- Indigo -->
-        <stop offset="100%" stop-color="#8B5CF6"/> <!-- Violet -->
-      </linearGradient>
-    </defs>
-    <path fill="url(#faqWaveGradientBottom)">
-      <animate attributeName="d" dur="8s" repeatCount="indefinite"
-        values="
-          M0,160 C480,220 960,100 1440,160 L1440,320 L0,320 Z;
-          M0,140 C480,180 960,140 1440,120 L1440,320 L0,320 Z;
-          M0,160 C480,220 960,100 1440,160 L1440,320 L0,320 Z
-        " />
-    </path>
-  </svg>
-</div>
-
-<!-- Custom Animation -->
-<style>
-  .animate-float {
-    animation: float 3s ease-in-out infinite;
-  }
-  @keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
-  }
-</style>
+<!-- 🚀 Final CTA -->
+<section class="bg-indigo-600 text-white py-20 px-6 text-center" data-aos="fade-up" data-aos-delay="400">
+  <h2 class="text-3xl md:text-4xl font-bold mb-6">Ready to grow your business?</h2>
+  <p class="mb-8 text-lg">Pick a plan today and start managing your clients with ease.</p>
+  <a href="/register" class="bg-white text-indigo-600 px-8 py-3 rounded-lg font-semibold shadow hover:bg-gray-100 transition">Get Started Now</a>
+</section>
 
 <!-- Lucide Icons -->
 <script src="https://unpkg.com/lucide@latest"></script>
@@ -332,14 +238,5 @@
   lucide.createIcons();
 </script>
 
-
-<!-- Final CTA -->
-<section class="bg-indigo-600 text-white py-20 px-6 text-center" data-aos="fade-up">
-    <h2 class="text-3xl md:text-4xl font-bold mb-6">Ready to grow your business?</h2>
-    <p class="mb-8 text-lg">Pick a plan today and start managing your clients with ease.</p>
-    <a href="/register" class="bg-white text-indigo-600 px-8 py-3 rounded-lg font-semibold shadow hover:bg-gray-100 transition">
-        Get Started Now
-    </a>
-</section>
 
 @endsection
